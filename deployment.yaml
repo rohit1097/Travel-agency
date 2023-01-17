@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: travel-agency
-          image: 943696395732.dkr.ecr.us-east-1.amazonaws.com/techgenie:latest
+          image: 943696395732.dkr.ecr.us-east-1.amazonaws.com/travel-agency:latest
           ports:
             - containerPort: 80
           env:
