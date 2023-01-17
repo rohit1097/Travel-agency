@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: travel-agency-service
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 90
+  selector:
+    matchLabels:
+      app: travel-agency-service
+  template:
+    metadata:
+      name: travel-agency-service
+      labels:
+        app: travel-agency-service
+    spec:
+      containers:
+        - name: travel-agency
+          image: 943696395732.dkr.ecr.us-east-1.amazonaws.com/techgenie:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: EXTENSIONDB_HOST
+              value: "database-1.caav3m5vgnvl.us-east-1.rds.amazonaws.com"
+            - name: EXTENSIONDB_PORT
+              value: "3306"
+            - name: EXTENSIONDB_DB
+              value: tagency
+            - name: EXTENSIONDB_USER
+              value: admin
+            - name: EXTENSIONDB_PASSWORD
+              value: admin123
+---           
+apiVersion: v1
+kind: Service
+metadata:
+  name: travel-agency-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: travel-agency-service
+  ports:
+    - port: 80
+      targetPort: 80
