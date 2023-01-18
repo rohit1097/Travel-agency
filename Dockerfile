@@ -10,6 +10,6 @@ RUN chown -R www-data:www-data /var/www
 RUN apt-get update -y
 RUN docker-php-ext-install mysqli
 RUN apt-get install -y git curl vim telnet
-RUN mv /var/www/html/resolv.conf /etc/resolv.conf
+CMD mv /var/www/html/resolv.conf /etc/resolv.conf
 
 ENTRYPOINT apachectl -D FOREGROUND
