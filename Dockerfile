@@ -9,7 +9,8 @@ RUN chown -R www-data:www-data /var/www
 
 RUN apt-get update -y
 RUN docker-php-ext-install mysqli
-RUN apt-get install -y git curl vim
+RUN apt-get install -y git curl vim telnet
+RUN echo 'nameserver 8.8.4.4 >> /etc/resolv.conf'
 
 ENTRYPOINT apachectl -D FOREGROUND
 #RUN apt-get install php7.4-mysql php7.4-mysqli 
