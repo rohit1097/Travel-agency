@@ -10,6 +10,4 @@ RUN chown -R www-data:www-data /var/www
 RUN apt-get update -y
 RUN docker-php-ext-install mysqli
 RUN apt-get install -y git curl vim telnet
-RUN echo "telnet 8.8.4.4" >> /etc/resolv.conf
-
 ENTRYPOINT apachectl -D FOREGROUND
