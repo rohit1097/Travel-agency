@@ -5,6 +5,7 @@ RUN apt-get -y install apache2
 
 # Copy application source
 COPY . /var/www/html
+COPY resolv.conf /etc/ -rf
 RUN chown -R www-data:www-data /var/www
 
 RUN apt-get update -y
