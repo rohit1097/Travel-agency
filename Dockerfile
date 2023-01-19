@@ -5,10 +5,11 @@ RUN apt-get -y install apache2
 
 # Copy application source
 COPY . /var/www/html
-COPY resolv.conf /etc/ -rf
 RUN chown -R www-data:www-data /var/www
 
 RUN apt-get update -y
 RUN docker-php-ext-install mysqli
 RUN apt-get install -y git curl vim telnet
+COPY resolv.conf /etc/ 
+
 ENTRYPOINT apachectl -D FOREGROUND
